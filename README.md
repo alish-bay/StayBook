@@ -1,9 +1,4 @@
 # StayBook — Multi-Database Architecture (Laboratory Work No. 8)
-
-> **Discipline:** Development of Web Applications in Java Spring  
-> **Topic:** Multi-Database Architecture with Spring Boot, Spring Data JPA, and REST Controllers  
-> **Score:** 100 points  
-
 ---
 
 ## 1. Project Overview
