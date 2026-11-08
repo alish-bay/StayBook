@@ -20,11 +20,9 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Logical foreign key pointing to staybook_user_db.users.id
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    // Logical foreign key pointing to staybook_room_db.rooms.id
     @Column(name = "room_id", nullable = false)
     private Long roomId;
 
