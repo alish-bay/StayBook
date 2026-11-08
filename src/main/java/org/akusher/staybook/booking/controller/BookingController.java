@@ -41,14 +41,12 @@ public class BookingController {
         return ResponseEntity.noContent().build();
     }
 
-    // Equivalent to GET /api/grades/student/{id} in Lab 8
     @GetMapping("/bookings/user/{userId}")
     public ResponseEntity<List<BookingResponseDto>> getBookingsByUserId(@PathVariable Long userId) {
         return ResponseEntity.ok(bookingService.getBookingsByUserId(userId));
     }
 
-    // Equivalent to GET /api/students/{id}/transcript in Lab 8 (Final Challenge)
-    // Aggregates User info (user_db) + Bookings (booking_db) + Room info (room_db)
+
     @GetMapping("/users/{userId}/summary")
     public ResponseEntity<UserSummaryDto> getUserSummary(@PathVariable Long userId) {
         return ResponseEntity.ok(bookingService.getUserSummary(userId));
