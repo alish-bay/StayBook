@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="001-create-rooms-table" author="staybook">
+        <createTable tableName="rooms">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_rooms"/>
+            </column>
+            <column name="room_number" type="VARCHAR(50)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uk_rooms_room_number"/>
+            </column>
+            <column name="room_type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price_per_night" type="NUMERIC(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="capacity" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="002-seed-rooms" author="staybook">
+        <insert tableName="rooms">
+            <column name="room_number" value="101"/>
+            <column name="room_type" value="STANDARD"/>
+            <column name="price_per_night" valueNumeric="80.00"/>
+            <column name="capacity" valueNumeric="2"/>
+            <column name="is_active" valueBoolean="true"/>
+        </insert>
+        <insert tableName="rooms">
+            <column name="room_number" value="201"/>
+            <column name="room_type" value="DELUXE"/>
+            <column name="price_per_night" valueNumeric="150.00"/>
+            <column name="capacity" valueNumeric="3"/>
+            <column name="is_active" valueBoolean="true"/>
+        </insert>
+        <insert tableName="rooms">
+            <column name="room_number" value="301"/>
+            <column name="room_type" value="SUITE"/>
+            <column name="price_per_night" valueNumeric="280.00"/>
+            <column name="capacity" valueNumeric="4"/>
+            <column name="is_active" valueBoolean="true"/>
+        </insert>
+        <insert tableName="rooms">
+            <column name="room_number" value="401"/>
+            <column name="room_type" value="PRESIDENTIAL"/>
+            <column name="price_per_night" valueNumeric="500.00"/>
+            <column name="capacity" valueNumeric="6"/>
+            <column name="is_active" valueBoolean="true"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

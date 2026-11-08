@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="001-create-bookings-table" author="staybook">
+        <createTable tableName="bookings">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_bookings"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="room_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="check_in_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="check_out_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_price" type="NUMERIC(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(30)" defaultValue="CONFIRMED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="002-seed-bookings" author="staybook">
+        <insert tableName="bookings">
+            <column name="user_id" valueNumeric="1"/>
+            <column name="room_id" valueNumeric="1"/>
+            <column name="check_in_date" valueDate="2026-12-01"/>
+            <column name="check_out_date" valueDate="2026-12-04"/>
+            <column name="total_price" valueNumeric="240.00"/>
+            <column name="status" value="CONFIRMED"/>
+        </insert>
+        <insert tableName="bookings">
+            <column name="user_id" valueNumeric="1"/>
+            <column name="room_id" valueNumeric="2"/>
+            <column name="check_in_date" valueDate="2026-12-15"/>
+            <column name="check_out_date" valueDate="2026-12-18"/>
+            <column name="total_price" valueNumeric="450.00"/>
+            <column name="status" value="CONFIRMED"/>
+        </insert>
+        <insert tableName="bookings">
+            <column name="user_id" valueNumeric="2"/>
+            <column name="room_id" valueNumeric="3"/>
+            <column name="check_in_date" valueDate="2026-12-10"/>
+            <column name="check_out_date" valueDate="2026-12-12"/>
+            <column name="total_price" valueNumeric="560.00"/>
+            <column name="status" value="CONFIRMED"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
