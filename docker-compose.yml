@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: staybook-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql/init-databases.sql:/docker-entrypoint-initdb.d/01-init-databases.sql
+      - postgres_staybook_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_staybook_data:
