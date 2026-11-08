@@ -285,11 +285,16 @@ The application starts on port `8080`.
 
 ## 7. Technical Implementation Details
 
-### 7.1. Separate Persistence Configurations
+### 7.1. Separate Persistence Configurations & Liquibase Migrations
 Each database has its own configuration class with dedicated beans:
-- `userDataSource`, `userEntityManagerFactory`, `userTransactionManager` (marked `@Primary`)
-- `roomDataSource`, `roomEntityManagerFactory`, `roomTransactionManager`
-- `bookingDataSource`, `bookingEntityManagerFactory`, `bookingTransactionManager`
+- `userDataSource`, `userLiquibase`, `userEntityManagerFactory` (depends on `userLiquibase`), `userTransactionManager` (marked `@Primary`)
+- `roomDataSource`, `roomLiquibase`, `roomEntityManagerFactory` (depends on `roomLiquibase`), `roomTransactionManager`
+- `bookingDataSource`, `bookingLiquibase`, `bookingEntityManagerFactory` (depends on `bookingLiquibase`), `bookingTransactionManager`
+
+Liquibase migrations are isolated per database under `src/main/resources/db/changelog/`:
+- `db.changelog-user.xml` manages the `users` table and initial seed users.
+- `db.changelog-room.xml` manages the `rooms` table and room catalog seed data.
+- `db.changelog-booking.xml` manages the `bookings` table and sample reservations.
 
 Repositories are isolated to their respective base packages:
 ```java
