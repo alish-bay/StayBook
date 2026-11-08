@@ -170,7 +170,7 @@ docker compose up -d
 ```
 
 ### 5.2. Configure Environment Variables (Optional)
-Defaults are configured to connect to `localhost:5432` with username `postgres` and password `postgres`. If using custom credentials, export them or create a `.env` file:
+Defaults are configured to connect to `localhost:5433` (Docker container) with username `postgres` and password `postgres`. If using custom credentials, export them or create a `.env` file:
 
 ```bash
 export DB_USERNAME=postgres
@@ -184,7 +184,7 @@ export DB_PASSWORD=your_password
 ./mvnw spring-boot:run
 ```
 
-The application starts on port `8080`.
+The application starts on port `8089` (configured via `server.port=8089`).
 
 ---
 
